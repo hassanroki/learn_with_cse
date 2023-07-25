@@ -1,0 +1,93 @@
+/* Common CSS Start*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* Submit Button */
+.submit-button input[type="submit"]{
+    background-color: #218838;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: 1px solid #FFFFFF;
+    border-radius: 10px;
+}
+
+.box-shadow{
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 7px #aaa;
+}
+
+/* Common CSS End*/
+
+/* Header File Start */
+
+/* Menubar */
+.menubar{
+    background-color: #162138;
+}
+
+.menubar .logo{
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.menubar .logo span{
+    color: #F4A325;
+}
+
+.menubar .navbar-nav li a{
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: #162138;
+    text-transform: uppercase;
+}
+
+.menubar .navbar-nav li a:hover{
+    color: aqua;
+}
+
+/* Left Menu */
+.left-menu{
+    padding: 80px 0px;
+    background-color: #F4F4F4;
+}
+
+.left-menu ul li:hover{
+    background-color: #658cdf;
+    color: #FFFFFF;
+}
+/* Header File End */
+
+/* Class File Start */
+
+
+/* Class File End */
+
+
+/* Students Add File Start */
+
+
+/* Students Add File End */
+
+/* Admin Portal File Start */
+/* Login Form */
+.login{
+    padding: 80px 0px;
+}
+
+.login .login-form{
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login .login-form input[type="submit"]{
+    background-color: #218838;
+    color: #FFFFFF;
+}
+/* Login File End */
+
+/* Admin Portal File Start */
+

@@ -1,0 +1,170 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.box-shadow{
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 7px #aaa;
+}
+
+/* Header File Start */
+
+/* Menubar */
+.menubar{
+    background-color: #162138;
+}
+
+.menubar .logo{
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.menubar .logo span{
+    color: #F4A325;
+}
+
+.menubar .navbar-nav li a{
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: #162138;
+    text-transform: uppercase;
+}
+
+.menubar .navbar-nav li a:hover{
+    color: aqua;
+}
+
+.menubar form input[type="search"]{
+    max-width: 250px;
+}
+/* Header File End */
+
+/* Index File Start */
+/* About */
+.about{
+    background-color: #F4F4F4;
+    padding: 80px 0px;
+}
+/* Index File End */
+
+/* Footer File Start */
+.footer{
+    background-color: #1C1D1F;
+}
+
+.footer h4, .footer h5, .footer address{
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.footer ul li a{
+    color: #FFFFFF;
+    font-size: 16px;
+    text-align: center;
+}
+
+.footer ul li a:hover{
+    color: #A89B78;
+}
+
+.footer .footer-bottom{
+    background-color: #151618;
+    border-top: 1px solid #FFFFFF;
+}
+
+.footer .footer-bottom p{
+    color: #FFFFFF;
+    text-align: center;
+}
+/* Footer File End */
+
+/* Contact File Start */
+/* Contact */
+.contact{
+    background-color: #F4F4F4;
+    padding: 80px 0;
+}
+
+.contact .form input[type="submit"] {
+    color: #FFFFFF;
+    background-color: #218838;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid #FFFFFF;
+}
+
+.contact .form input[type="submit"]:hover {
+    background-color: #A8AFB7;
+    color: #000000;
+}
+/* Contact File End */
+
+/* Login File Start */
+/* Login Form */
+.login{
+    padding: 80px 0px;
+}
+
+.login .login-form{
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login .login-form input[type="submit"]{
+    background-color: #218838;
+    color: #FFFFFF;
+}
+/* Login File End */
+
+/* Student Portal File Start */
+
+/* Student Portal File End */
+
+/* Registration File Start */
+.registration{
+    padding: 80px 0px;
+    background-color: #F4F4F4;
+}
+
+.registration input[type="submit"]{
+    background-color: #218838;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: 1px solid #FFFFFF;
+    border-radius: 10px;
+
+}
+/* Registration File End */
+
+/* Notice File Start */
+.notice{
+    padding: 80px 0px;
+    background-color: #F4F4F4;
+}
+
+.notice h4{
+    background-color: #609513;
+    padding: 10px 20px;
+}
+
+.notice .table td{
+    color: #4C82B8;
+}
+/* Notice File End */
+
+/* Teacher File Start */
+.teacher{
+    padding-top: 80px;
+    background-color: #F4F4F4;
+}
+/* Teacher File End */
+
+/* Gallery File Start */
+.gallery{
+    padding: 80px 0px;
+    background-color: #F4F4F4;
+}
+/* Gallery File End */

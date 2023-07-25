@@ -1,0 +1,9 @@
+<?php
+// Session Start
+session_start();
+if (isset($_SESSION['name'])) {
+    unset( $_SESSION['name'] );
+    header('location: login.php');
+} else{
+    header('location: login.php');
+}
