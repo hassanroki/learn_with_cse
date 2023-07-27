@@ -22,6 +22,14 @@ function selectAnyTableWhereId($table, $id)
     return $conn->query($showData);
 }
 
+// Website View Any Table Data & Any Column
+function selectAnyTableWhereColumnId($table, $where, $id)
+{
+    global $conn;
+    $showData = "SELECT * FROM $table WHERE $where = $id";
+    return $conn->query($showData);
+}
+
 
 // Delete Any Table Data
 function deleteAnyTableData($table, $id)
