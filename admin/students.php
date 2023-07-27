@@ -77,8 +77,8 @@ $result = $conn->query($selectSql);
                     <th>SL</th>
                     <th>Id</th>
                     <th>Students Name</th>
-                    <th>Class Name</th>
-                    <th>Action</th>
+                    <th>Students Registration</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
@@ -93,7 +93,7 @@ $result = $conn->query($selectSql);
                             <td><?php echo $i; ?></td>
                             <td><?php echo $row['id']; ?></td>
                             <td><?php echo $row['studentName']; ?></td>
-                            <td><?php echo $row['className']; ?></td>
+                            <td><?php echo $row['reg']; ?></td>
                             <td>
                                 <a href="studentsView.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">View</a>
                                 <a href="studentsUpdate.php?id=<?php echo $row['id']; ?>" class="btn btn-info">Edit</a>

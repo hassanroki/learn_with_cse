@@ -19,22 +19,39 @@ require('include/connect.php');
 ?>
 
 <?php
-// class table data showing website
-$selectSql = "SELECT * FROM class";
-$result = $conn->query($selectSql);
+
+// Connect Function
+require_once('include/function.php');
+
+// Semester table data showing website
+$result = showDataAnyTable('semester');
+
+// Department Table Data Showing
+$showDepartment = showDataAnyTable('department');
+
 ?>
 
 <!-- Html -->
 <div class="col-md-9 ps-3">
     <a href="students.php" class="btn btn-info px-3">Students List</a>
-    <hr>
     <h2 class="text-center">Add New Students</h2>
+    <hr>
 
     <?php
     if (isset($_SESSION['email_exits'])) {
     ?>
         <div class="alert alert-warning">
             <strong>Warning!</strong> <?php echo $_SESSION['email_exits']; ?>
+        </div>
+    <?php
+    }
+    ?>
+
+    <?php
+    if (isset($_SESSION['reg_exits'])) {
+    ?>
+        <div class="alert alert-warning">
+            <strong>Warning!</strong> <?php echo $_SESSION['reg_exits']; ?>
         </div>
     <?php
     }
@@ -76,14 +93,37 @@ $result = $conn->query($selectSql);
                 <input type="text" name="motherName" id="motherName" class="form-control" placeholder="Enter Mother Name" required>
             </div>
             <div class="mt-3">
-                <label for="className" class="form-label">class</label>
-                <select name="className" id="className" class="form-select">
-                    <option value="" selected>Select Class</option>
+                <label for="semesterId" class="form-label">Semester</label>
+                <select name="semesterId" id="semesterId" class="form-select">
+                    <option value="" selected>Select Semester</option>
                     <?php
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                     ?>
-                            <option value="<?php echo $row['className']; ?>"><?php echo $row['className']; ?></option>
+                            <option value="<?php echo $row['id']; ?>"><?php echo $row['semester']; ?></option>
+                    <?php
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="mt-3">
+                <label for="roll" class="form-label">Roll</label>
+                <input type="text" name="roll" id="roll" class="form-control" placeholder="Enter Roll">
+            </div>
+            <div class="mt-3">
+                <label for="reg" class="form-label">Registration</label>
+                <input type="text" name="reg" id="reg" class="form-control" placeholder="Enter Registration">
+            </div>
+            <div class="mt-3">
+                <label for="reg" class="form-label">Department</label>
+                <select name="departmentId" id="departmentId" class="form-control">
+                    <option value="" selected>Select Department</option>
+                    <?php
+                    if ($showDepartment->num_rows > 0) {
+                        while ($data = $showDepartment->fetch_object()) {
+                    ?>
+                            <option value="<?php echo $data->id; ?>"><?php echo $data->departmentName; ?></option>
                     <?php
                         }
                     }
@@ -140,6 +180,7 @@ include_once('include/footer.php');
 <?php
 // Unset Session
 unset($_SESSION['email_exits']);
+unset($_SESSION['reg_exits']);
 unset($_SESSION['password_wrong']);
 unset($_SESSION['insert_error']);
 ?>

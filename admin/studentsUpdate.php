@@ -34,8 +34,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 ?>
 
 <?php
-// class table data className showing website
-$selectSql = "SELECT * FROM class";
+// Semester table data semester showing website
+$selectSql = "SELECT * FROM semester";
 $result = $conn->query($selectSql);
 ?>
 
@@ -71,14 +71,14 @@ $result = $conn->query($selectSql);
                         <input type="text" name="motherName" id="motherName" class="form-control" value="<?php echo $data->motherName; ?>" required>
                     </div>
                     <div class="mt-3">
-                        <label for="className" class="form-label">class</label>
-                        <select name="className" id="className" class="form-select">
+                        <label for="semester" class="form-label">Semester</label>
+                        <select name="semester" id="semester" class="form-select">
                             <option value="" selected>Select Class</option>
                             <?php
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                             ?>
-                                    <option value="<?php echo $row['className'] ?>" selected><?php echo $row['className'] ?></option>
+                                    <option value="<?php echo $row['semester'] ?>" selected><?php echo $row['semester'] ?></option>
                             <?php
                                 }
                             }

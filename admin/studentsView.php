@@ -68,8 +68,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             <td><?php echo $data->motherName; ?></td>
                         </tr>
                         <tr>
-                            <th>Class Name</th>
-                            <td><?php echo $data->className; ?></td>
+                            <th>Semester Name</th>
+                            <td><?php echo $data->semester; ?></td>
                         </tr>
                         <tr>
                             <th>Gender</th>

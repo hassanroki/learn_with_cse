@@ -13,6 +13,17 @@ require('include/connect.php');
 include_once('include/header.php');
 ?>
 
+<?php
+// Function Connect Used Query
+require_once('include/function.php');
+
+// Teachers Table Data Show
+$teachers = showDataAnyTable('teachers');
+
+// Semester Table Data Show
+$semester = showDataAnyTable('semester');
+?>
+
 <!-- Html -->
 <div class="col-md-9 ps-3">
     <a href="subjects.php" class="btn btn-info">All Subjects</a>
@@ -20,13 +31,13 @@ include_once('include/header.php');
     <hr>
 
     <?php
-        if( isset( $_SESSION['insert_error'] ) ) {
-            ?>
-            <div class="alert alert-warning">
-                <strong>Warning!</strong> <?php echo $_SESSION['insert_error']; ?>
-            </div>
-            <?php
-        }
+    if (isset($_SESSION['insert_error'])) {
+    ?>
+        <div class="alert alert-warning">
+            <strong>Warning!</strong> <?php echo $_SESSION['insert_error']; ?>
+        </div>
+    <?php
+    }
     ?>
 
     <form action="subjectsStore.php" class="form box-shadow submit-button" method="post">
@@ -41,6 +52,40 @@ include_once('include/header.php');
         <div class="mt-3">
             <label for="credit" class="form-label">Credit</label>
             <input type="text" name="credit" id="credit" class="form-control" placeholder="Enter Credit">
+        </div>
+        <div class="mt-3">
+            <label for="mark" class="form-label">Mark</label>
+            <input type="text" name="mark" id="mark" class="form-control" placeholder="Enter Mark">
+        </div>
+        <div class="mt-3">
+            <label for="teacherId" class="form-label">Teacher Name</label>
+            <select name="teacherId" id="teacherId" class="form-control">
+                <option value="" selected>Select Teacher Name</option>
+                <?php
+                if ($teachers->num_rows > 0) {
+                    while ($data = $teachers->fetch_object()) {
+                ?>
+                        <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
+                <?php
+                    }
+                }
+                ?>
+            </select>
+        </div>
+        <div class="mt-3">
+            <label for="semesterId" class="form-label">Semester Name</label>
+            <select name="semesterId" id="semesterId" class="form-control">
+                <option value="" selected>Select Semester Name</option>
+                <?php
+                if ($semester->num_rows > 0) {
+                    while ($row = $semester->fetch_assoc()) {
+                ?>
+                        <option value="<?php echo $row['id']; ?>"><?php echo $row['semester']; ?></option>
+                <?php
+                    }
+                }
+                ?>
+            </select>
         </div>
         <div class="mt-3">
             <input type="submit" value="Submit" name="insert">
