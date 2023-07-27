@@ -90,6 +90,7 @@ include_once('include/header.php');
                             <td> <?php echo $row['courseTitle']; ?></td>
                             <td> <?php echo $row['credit']; ?></td>
                             <td>
+                                <a href="subjectsView.php?id=<?php echo $row['id']; ?>" class="btn btn-info">View</a>
                                 <a href="subjectsUpdate.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a>
                                 <a href="subjectsStore.php?id=<?php echo $row['id']; ?>" class="btn btn-warning" onclick="return confirm('Are you sure?')">Delete</a>
                             </td>

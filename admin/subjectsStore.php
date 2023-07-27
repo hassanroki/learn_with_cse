@@ -10,7 +10,7 @@
 
 <?php
     // // Create Subjects Table Then Comment Out
-    // $createTable = "CREATE TABLE subjects( id INT(11) PRIMARY KEY AUTO_INCREMENT, courseCode VARCHAR(80), courseTitle VARCHAR(80), credit VARCHAR(11) )";
+    // $createTable = "CREATE TABLE subjects( id INT(11) PRIMARY KEY AUTO_INCREMENT, courseCode VARCHAR(80), courseTitle VARCHAR(80), credit VARCHAR(11), mark INT(11), teacherId INT(11), semesterId INT(11) )";
 
     // if( $conn -> query( $insetTable ) === TRUE ) {
     //     echo "Table Created Success!";
@@ -25,8 +25,11 @@
             $courseCode = $_POST['courseCode'];
             $courseTitle = $_POST['courseTitle'];
             $credit = $_POST['credit'];
+            $mark = $_POST['mark'];
+            $teacherId = $_POST['teacherId'];
+            $semesterId = $_POST['semesterId'];
 
-            $insertData = "INSERT INTO subjects( courseCode, courseTitle, credit ) VALUES( '$courseCode', '$courseTitle', '$credit' )";
+            $insertData = "INSERT INTO subjects( courseCode, courseTitle, credit, mark, teacherId, semesterId ) VALUES( '$courseCode', '$courseTitle', '$credit', '$mark', '$teacherId', '$semesterId' )";
 
             global $conn;
             if( $conn -> query( $insertData ) === TRUE ) {
@@ -48,8 +51,11 @@
             $courseCode = $_POST['courseCode'];
             $courseTitle = $_POST['courseTitle'];
             $credit = $_POST['credit'];
+            $mark = $_POST['mark'];
+            $teacherId = $_POST['teacherId'];
+            $semesterId = $_POST['semesterId'];
 
-            $updateData = "UPDATE subjects SET courseCode = '$courseCode', courseTitle = '$courseTitle', credit = '$credit' WHERE id = $id";
+            $updateData = "UPDATE subjects SET courseCode = '$courseCode', courseTitle = '$courseTitle', credit = '$credit', mark = '$mark', teacherId = '$teacherId', semesterId = '$semesterId' WHERE id = $id";
 
             global $conn;
             if( $conn -> query( $updateData ) === TRUE ) {

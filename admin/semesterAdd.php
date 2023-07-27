@@ -16,9 +16,10 @@ include_once('include/header.php');
 <!-- Html -->
 
 <div class="col-md-9 ps-3">
-    <a href="classStore.php" class="btn btn-info px-3">Class List</a>
-    <hr>
+    <a href="semester.php" class="btn btn-info px-3">Semester List</a>
     <h2 class="text-center">Add New Class</h2>
+    <hr>
+
     <?php
     if (isset($_SESSION['insert_error'])) {
     ?>
@@ -28,12 +29,13 @@ include_once('include/header.php');
     <?php
     }
     ?>
-    <form action="classStore.php" class="form" method="post">
-        <div class="mb-3">
-            <label for="className" class="form-label">Class Name </label>
-            <input type="text" name="className" id="className" placeholder="Enter Your Class" class="form-control">
+
+    <form action="semesterStore.php" class="form box-shadow" method="post">
+        <div class="mt-3">
+            <label for="semester" class="form-label">Semester Name </label>
+            <input type="text" name="semester" id="semester" placeholder="Enter Semester" class="form-control">
         </div>
-        <div class="mb-3">
+        <div class="mt-3">
             <input type="submit" value="Submit" name="insert" class="form-control bg-danger text-white">
         </div>
     </form>
@@ -47,4 +49,3 @@ include_once('include/footer.php');
 <?php
 // Unset Session
 unset($_SESSION['insert_error']);
-?>
