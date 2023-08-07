@@ -9,8 +9,9 @@ if (!isset($_SESSION['login_success'])) {
 ?>
 
 <?php
-// Connect DB
+// Connect DB and Function
 require('include/connect.php');
+require_once('include/function.php');
 ?>
 
 <?php
@@ -24,11 +25,21 @@ $data = [];
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = $_GET['id'];
 
-    $selectSql = "SELECT * FROM students WHERE id = '$id'";
-    $result = $conn->query($selectSql);
+    
+    $result = selectAnyTableWhereId('students', $id);
 
     if ($result->num_rows == 1) {
         $data = $result->fetch_object();
+
+        // Semester Viewing
+        $semesterId = $data -> semesterId;
+        $semesterResult = selectAnyTableWhereId('semester', $semesterId);
+        $semesterView = $semesterResult -> fetch_object();
+
+        // Gender Viewing
+        $genderId = $data -> genderId;
+        $genderResult = selectAnyTableWhereId('gender', $genderId);
+        $genderView = $genderResult -> fetch_object();
     }
 }
 ?>
@@ -52,8 +63,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             <td><?php echo $data->id; ?></td>
                         </tr>
                         <tr>
-                            <th>usersID</th>
-                            <td><?php echo $data->usersID; ?></td>
+                            <th>usersId</th>
+                            <td><?php echo $data->userId; ?></td>
                         </tr>
                         <tr>
                             <th>Student Name</th>
@@ -69,11 +80,19 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                         </tr>
                         <tr>
                             <th>Semester Name</th>
-                            <td><?php echo $data->semester; ?></td>
+                            <td><?php echo $semesterView->semester; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Roll</th>
+                            <td><?php echo $data->roll; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Registration</th>
+                            <td><?php echo $data->reg; ?></td>
                         </tr>
                         <tr>
                             <th>Gender</th>
-                            <td><?php echo $data->gender; ?></td>
+                            <td><?php echo $genderView->name; ?></td>
                         </tr>
                         <tr>
                             <th>Email</th>

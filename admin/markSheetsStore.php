@@ -10,7 +10,7 @@ require('include/connect.php');
 
 <?php
 // // Create Table Then Comment Out
-// $createTable = "CREATE TABLE markSheets( id INT(11) AUTO_INCREMENT PRIMARY KEY, studentId INT(11), semesterId INT(11), subjectId INT(11), mark INT(11) )";
+// $createTable = "CREATE TABLE markSheets( id INT(11) AUTO_INCREMENT PRIMARY KEY, studentId INT(11), studentReg INT(11), semesterId INT(11), subjectId INT(11), mark INT(11) )";
 
 // if( $conn -> query( $createTable ) === TRUE ) {
 //     echo "Created Table!";
@@ -18,27 +18,21 @@ require('include/connect.php');
 //     echo ("Table create fail!") . $conn -> connect_error;
 // }
 
-
-// Insert Data markSheets Table
-function addMarkSheets()
-{
-    if (isset($_POST['insert']) && !empty($_POST['studentId']) && !empty($_POST['semesterId']) && !empty($_POST['subjectId']) && !empty($_POST['mark'])) {
+// markEntry
+function markEntry(){  
+    if( isset( $_POST['insert'] ) && !empty( $_POST['mark'] ) ) {
+        global $conn;
         $studentId = $_POST['studentId'];
         $semesterId = $_POST['semesterId'];
         $subjectId = $_POST['subjectId'];
-        $mark = $_POST['mark'];
-        global $conn;
-
-        // Check Duplicate Subjects
-        $subCheck = "SELECT * FROM markSheets WHERE subjectId = '$subjectId' and $studentId = '$studentId'";
-        $subResult = $conn->query($subCheck);
-
-        if ($subResult->num_rows == 1 ) {
-            $_SESSION['subject_exits'] = "Already Exits Subjects!";
-            header('location: markSheetsAdd.php');
-        } else {
-            $insertData = "INSERT INTO markSheets( studentId, semesterId, subjectId, mark ) VALUES( '$studentId', '$semesterId', '$subjectId', '$mark' )";
-
+        
+        if(is_array( $studentId )){
+            foreach( $studentId as $key => $stId ){
+                $studentReg = $_POST['studentReg'][$key];
+                $mark = $_POST['mark'][$key];
+    
+                $insertData = "INSERT INTO markSheets( studentId, studentReg, semesterId, subjectId, mark ) VALUES( '$stId', '$studentReg', '$semesterId', '$subjectId', '$mark' )";
+            }
             if ($conn->query($insertData) === TRUE) {
                 $_SESSION['insert_data'] = "Data Inserted!";
                 header('location: markSheets.php');
@@ -49,7 +43,7 @@ function addMarkSheets()
         }
     }
 }
-addMarkSheets();
+markEntry();
 
 
 function updateMarkSheets() {

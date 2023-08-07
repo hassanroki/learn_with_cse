@@ -29,6 +29,9 @@ $result = showDataAnyTable('semester');
 // Department Table Data Showing
 $showDepartment = showDataAnyTable('department');
 
+// Gender Table Data Showing
+$showGender = showDataAnyTable('gender');
+
 ?>
 
 <!-- Html -->
@@ -135,12 +138,16 @@ $showDepartment = showDataAnyTable('department');
                 <input type="text" name="age" id="age" class="form-control" placeholder="Enter Age">
             </div>
             <div class="mt-3">
-                <label for="gender">Gender</label>
-                <select name="gender" id="gender" class="form-select">
+                <label for="genderId">Gender</label>
+                <select name="genderId" id="genderId" class="form-select">
                     <option value="" selected>Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
+                    <?php
+                        while( $data = $showGender -> fetch_object() ) {
+                            ?>
+                            <option value="<?php echo $data -> id; ?>"><?php echo $data -> name; ?></option>
+                            <?php
+                        }
+                    ?>
                 </select>
             </div>
             <div class="mt-3">

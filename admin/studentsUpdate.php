@@ -16,6 +16,9 @@ include_once('include/headerCssFonts.php');
 <?php
 // Connect DB
 require('include/connect.php');
+
+// Query Function Connected
+require_once('include/function.php');
 ?>
 
 <?php
@@ -24,11 +27,11 @@ $data = [];
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = $_GET['id'];
 
-    $selectStudents = "SELECT * FROM students WHERE id = '$id'";
-    $result = $conn->query($selectStudents);
+    $showData = selectAnyTableWhereId('students', $id);
+    
 
-    if ($result->num_rows == 1) {
-        $data = $result->fetch_object();
+    if ($showData->num_rows == 1) {
+        $data = $showData->fetch_object();
     }
 }
 ?>
@@ -37,6 +40,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 // Semester table data semester showing website
 $selectSql = "SELECT * FROM semester";
 $result = $conn->query($selectSql);
+
+// Gender Table Data Showing
+$gender = showDataAnyTable('gender');
 ?>
 
 <!-- Html -->
@@ -92,7 +98,7 @@ $result = $conn->query($selectSql);
                     <div class="mt-3">
                         <label for="gender">Gender</label>
                         <select name="gender" id="gender" class="form-select">
-                            <option value="<?php echo $data->gender; ?>" selected><?php echo $data->gender; ?></option>
+                            <option value="<?php echo $gender->id; ?>" selected><?php echo $gender->name; ?></option>
                             <option value="">Select Gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
