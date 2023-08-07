@@ -89,13 +89,10 @@ $url = "http://localhost/learn_with_cse/admin/";
                             <a href="<?php echo $url; ?>markEntry.php" class="btn">Mark Entry</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="<?php echo $url; ?>markEntryActions.php.php" class="btn">Mark Entry Actions</a>
+                            <a href="<?php echo $url; ?>markSheets.php" class="btn">MarkSheets</a>
                         </li>
                         <li class="list-group-item">
                             <a href="<?php echo $url; ?>admin.php" class="btn">Admin</a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="<?php echo $url; ?>markSheets.php" class="btn">MarkSheets</a>
                         </li>
                         <li class="list-group-item">
                             <a href="<?php echo $url; ?>users.php" class="btn">Users</a>

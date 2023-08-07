@@ -16,6 +16,7 @@ $subjectList = showDataAnyTable('subjects');
 
 <!-- Html -->
 <div class="col-md-9 ps-3">
+    <a href="markSheets.php" class="btn btn-info">MarkSheets</a>
     <h3 class="text-center">Select Semester & Subject</h3>
     <hr>
     <form action="markEntryActions.php" class="form" method="post">

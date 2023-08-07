@@ -24,7 +24,7 @@ $markSheets = showDataAnyTable('markSheets');
 
 <!-- Html -->
 <div class="col-md-9 ps-3">
-    <a href="markSheetsAdd.php" class="btn btn-info">Add MarkSheets</a>
+    <a href="markEntry.php" class="btn btn-info">Mark Entry</a>
     <h2 class="text-center">All MarkSheets</h2>
     <hr>
 

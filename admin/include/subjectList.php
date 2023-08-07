@@ -1,6 +1,7 @@
 <?php
 // Connect DB
 require('connect.php');
+//var_dump($_POST);
 $semesterId = $_POST['semesterId'];
 
 // Select Semester table

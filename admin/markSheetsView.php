@@ -54,8 +54,8 @@ if ($data == null) {
             <tr>
                 <th>Id</th>
                 <th>Student Name</th>
-                <th>Student Roll</th>
                 <th>Student Registration</th>
+                <th>Student Roll</th>
                 <th>Semester Name</th>
                 <th>Subject Name</th>
                 <th>Mark</th>
@@ -65,8 +65,8 @@ if ($data == null) {
             <tr>
                 <td><?php echo $data -> id; ?></td>
                 <td><?php echo $student -> studentName; ?></td>
+                <td><?php echo $data -> studentReg; ?></td>
                 <td><?php echo $student -> roll; ?></td>
-                <td><?php echo $student -> reg; ?></td>
                 <td><?php echo $semester -> semester; ?></td>
                 <td><?php echo $subject -> courseTitle; ?></td>
                 <td><?php echo $data -> mark; ?></td>

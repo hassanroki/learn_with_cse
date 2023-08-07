@@ -4,6 +4,7 @@
     $(document).ready(function() {
         $("#semesterId").on('change', function() {
             let semesterId = $(this).val();
+            // console.log(semesterId);
 
             $.ajax({
                 url: "include/subjectList.php",
