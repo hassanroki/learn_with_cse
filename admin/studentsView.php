@@ -33,12 +33,17 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
         // Semester Viewing
         $semesterId = $data -> semesterId;
-        $semesterResult = selectAnyTableWhereId('semester', $semesterId);
+        $semesterResult = selectAnyTableWhereId('semesters', $semesterId);
         $semesterView = $semesterResult -> fetch_object();
 
+        // Departments View
+        $departmentId = $data -> departmentId;
+        $departmentResult = selectAnyTableWhereId('departments', $departmentId);
+        $departmentView = $departmentResult -> fetch_object();
+        
         // Gender Viewing
         $genderId = $data -> genderId;
-        $genderResult = selectAnyTableWhereId('gender', $genderId);
+        $genderResult = selectAnyTableWhereId('genders', $genderId);
         $genderView = $genderResult -> fetch_object();
     }
 }
@@ -79,8 +84,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             <td><?php echo $data->motherName; ?></td>
                         </tr>
                         <tr>
-                            <th>Semester Name</th>
-                            <td><?php echo $semesterView->semester; ?></td>
+                            <th>Semester</th>
+                            <td><?php echo $semesterView->name; ?></td>
                         </tr>
                         <tr>
                             <th>Roll</th>
@@ -89,6 +94,10 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                         <tr>
                             <th>Registration</th>
                             <td><?php echo $data->reg; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Department</th>
+                            <td><?php echo $departmentView->name; ?></td>
                         </tr>
                         <tr>
                             <th>Gender</th>
@@ -118,4 +127,3 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 <?php
 // Footer JS
 include_once('include/footerJs.php');
-?>

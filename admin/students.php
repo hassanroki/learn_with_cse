@@ -97,7 +97,7 @@ $result = $conn->query($selectSql);
                             <td>
                                 <a href="studentsView.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">View</a>
                                 <a href="studentsUpdate.php?id=<?php echo $row['id']; ?>" class="btn btn-info">Edit</a>
-                                <a href="studentsDelete.php?id=<?php echo $row['id']; ?>" class="btn btn-warning" onclick="return confirm('Are you sure?')">Delete</a>
+                                <a href="studentsStore.php?id=<?php echo $row['id']; ?>" class="btn btn-warning" onclick="return confirm('Are you sure?')">Delete</a>
                             </td>
                         </tr>
                     </tbody>
@@ -120,4 +120,3 @@ unset($_SESSION['insert_data']);
 unset($_SESSION['update_data']);
 unset($_SESSION['delete_data']);
 unset($_SESSION['delete_error']);
-?>

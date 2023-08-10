@@ -1,24 +1,22 @@
 <?php
     // Session Start
     session_start();
-?>
 
-
-<?php
 // Connect DB
 require('include/connect.php');
-?>
 
-<?php
 // Header
 include_once('include/header.php');
-?>
 
+// Query Function
+require_once('include/function.php');
 
-<?php
-// Department Table Data Showing Department
-$selectDepartment = "SELECT * FROM department";
-$result = $conn->query($selectDepartment);
+// Department Table Data Showing
+$department = showDataAnyTable('departments');
+
+// Gender Table Data Showing
+$gender = showDataAnyTable('genders');
+
 ?>
 
 <!-- Html -->
@@ -67,14 +65,14 @@ $result = $conn->query($selectDepartment);
             <input type="email" name="email" id="email" class="form-control" placeholder="Enter Your Email">
         </div>
         <div class="mt-3">
-            <label for="department" class="form-label">Department</label>
-            <select name="department" id="department" class="form-control">
+            <label for="departmentId" class="form-label">Department</label>
+            <select name="departmentId" id="departmentId" class="form-control">
                 <option value="">Select Department</option>
                 <?php
-                if ($result->num_rows > 0) {
-                    while ($data = $result->fetch_object()) {
+                if ($department->num_rows > 0) {
+                    while ($data = $department->fetch_object()) {
                 ?>
-                    <option value="<?php echo $data->departmentName; ?>"><?php echo $data->departmentName; ?></option>
+                    <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
                 <?php
                     }
                 }
@@ -94,12 +92,18 @@ $result = $conn->query($selectDepartment);
             <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Enter Your Confirm Password">
         </div>
         <div class="mt-3">
-            <label for="gender" class="form-label">Gender</label>
-            <select name="gender" id="gender" class="form-control">
+            <label for="genderId" class="form-label">Gender</label>
+            <select name="genderId" id="genderId" class="form-control">
                 <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">female</option>
-                <option value="Other">Other</option>
+                <?php
+                if ($gender->num_rows > 0) {
+                    while ($data = $gender->fetch_object()) {
+                ?>
+                    <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
+                <?php
+                    }
+                }
+                ?>
             </select>
         </div>
         <div class="mt-3">
@@ -130,4 +134,3 @@ include_once('include/footer.php');
     unset($_SESSION['email_error']);
     unset($_SESSION['password_wrong']);
     unset($_SESSION['insert_error']);
-?>

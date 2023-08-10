@@ -27,6 +27,16 @@ include_once('include/header.php');
     <hr>
 
     <?php
+        if( isset( $_SESSION['course_exits'] ) ) {
+            ?>
+            <div class="alert alert-warning">
+                <strong>Warning!</strong> <?php echo $_SESSION['course_exits']; ?>
+            </div>
+            <?php
+        }
+    ?>
+
+    <?php
         if( isset( $_SESSION['insert_data'] ) ) {
             ?>
             <div class="alert alert-success">
@@ -109,6 +119,7 @@ include_once('include/footer.php');
 
 <?php
 // Unset Session
+unset($_SESSION['course_exits']);
 unset($_SESSION['insert_data']);
 unset($_SESSION['update_data']);
 unset($_SESSION['delete_data']);

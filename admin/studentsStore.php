@@ -21,7 +21,8 @@ require('include/connect.php');
 // }
 
 // Inset Data Table 
-function addStudents(){
+function addStudents()
+{
     if (isset($_POST['insert']) && !empty($_POST['studentName']) && !empty($_POST['fatherName']) && !empty($_POST['motherName']) && !empty($_POST['semesterId']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['contact'])) {
         $studentName = $_POST['studentName'];
         $fatherName = $_POST['fatherName'];
@@ -37,16 +38,16 @@ function addStudents(){
         $confirmPassword = md5($_POST['confirmPassword']);
         $contact = $_POST['contact'];
         $address = $_POST['address'];
-    
+
         global $conn;
         // Duplicate Email Check
         $emailCheck = "SELECT * FROM users WHERE email = '$email'";
         $result = $conn->query($emailCheck);
-    
+
         // Check Duplicate Registration
         $regCheck = "SELECT * FROM students WHERE reg = '$reg'";
         $regResult = $conn->query($regCheck);
-    
+
         if ($result->num_rows == 1) {
             $_SESSION['email_exits'] = 'Already Email Exist!';
             header('location: studentsAdd.php');
@@ -63,17 +64,17 @@ function addStudents(){
                 $file_upload = $target_dir . time() . "_" . basename($_FILES['profilePhoto']['name']);
                 move_uploaded_file($_FILES['profilePhoto']['tmp_name'], $file_upload);
             }
-    
+
             // Users Table Data Insert
             $usersData = "INSERT INTO users( roles_id, name, email, password ) VALUES( '2', '$studentName', '$email', '$password' )";
 
             if ($conn->query($usersData) === TRUE) {
                 $userId = $conn->insert_id;
             }
-    
+
             // Students Table Data Insert
             $studentsData = "INSERT INTO students( userId, studentName, fatherName, motherName, semesterId, roll, reg, departmentId, age, genderId, email, password, contact, address, profilePhoto ) VALUES( '$userId', '$studentName', '$fatherName', '$motherName', '$semesterId', '$roll', '$reg', '$departmentId', '$age', '$genderId', '$email', '$password', '$contact', '$address', '$file_upload' )";
-            
+
             if ($conn->query($studentsData) === TRUE) {
                 $_SESSION['insert_data'] = "Data Inserted!";
                 header('location: students.php');
@@ -88,43 +89,87 @@ addStudents();
 
 
 // Students Table Data Update
-if (isset($_POST['update']) && !empty($_POST['studentName']) && !empty($_POST['fatherName']) && !empty($_POST['motherName'])) {
-    $id = $_POST['id'];
-    $studentName = $_POST['studentName'];
-    $fatherName = $_POST['fatherName'];
-    $motherName = $_POST['motherName'];
-    $semester = $_POST['semester'];
-    $age = $_POST['age'];
-    $gender = $_POST['gender'];
-    $contact = $_POST['contact'];
-    $address = $_POST['address'];
+function updateStudentsData()
+{
+    if (isset($_POST['update']) && !empty($_POST['studentName']) && !empty($_POST['fatherName']) && !empty($_POST['motherName'])) {
+        $id = $_POST['id'];
+        $studentName = $_POST['studentName'];
+        $fatherName = $_POST['fatherName'];
+        $motherName = $_POST['motherName'];
+        $semesterId = $_POST['semesterId'];
+        $age = $_POST['age'];
+        $genderId = $_POST['genderId'];
+        $contact = $_POST['contact'];
+        $address = $_POST['address'];
+        global $conn;
 
-    // Delete Image
-    $selectImg = "SELECT * FROM students WHERE id = '$id'";
-    $resultImg = $conn->query($selectImg);
-    $img = $resultImg->fetch_assoc();
-    $imgLocation = $img['profilePhoto'];
+        // Delete Image
+        $selectImg = "SELECT * FROM students WHERE id = '$id'";
+        $resultImg = $conn->query($selectImg);
+        $img = $resultImg->fetch_assoc();
+        $imgLocation = $img['profilePhoto'];
 
-    if (file_exists($imgLocation)) {
-        unlink($imgLocation);
-    }
+        if (file_exists($imgLocation)) {
+            unlink($imgLocation);
+        }
 
 
-    // Image Upload
-    $target_dir = "../upload/";
-    if (isset($_FILES['profilePhoto'])) {
-        $file_upload = $target_dir . time() . "_" . basename($_FILES['profilePhoto']['name']);
-        move_uploaded_file($_FILES['profilePhoto']['tmp_name'], $file_upload);
-    }
+        // Image Upload
+        $target_dir = "../upload/";
+        if (isset($_FILES['profilePhoto'])) {
+            $file_upload = $target_dir . time() . "_" . basename($_FILES['profilePhoto']['name']);
+            move_uploaded_file($_FILES['profilePhoto']['tmp_name'], $file_upload);
+        }
 
-    // Update 
-    $updateSql = "UPDATE students SET studentName = '$studentName', fatherName = '$fatherName', motherName = '$motherName', semester = '$semester', age = '$age', gender = '$gender', contact = '$contact', address = '$address', profilePhoto = '$file_upload' WHERE id = '$id'";
+        // Update 
+        $updateSql = "UPDATE students SET studentName = '$studentName', fatherName = '$fatherName', motherName = '$motherName', semesterId = '$semesterId', age = '$age', genderId = '$genderId', contact = '$contact', address = '$address', profilePhoto = '$file_upload' WHERE id = '$id'";
 
-    if ($conn->query($updateSql) === TRUE) {
-        $_SESSION['update_data'] = "Updated Data! id = $id";
-        header('location: students.php');
-    } else {
-        $_SESSION['update_error'] = "Update Error! id = $id";
-        header('location: studentsUpdate');
+        if ($conn->query($updateSql) === TRUE) {
+            $_SESSION['update_data'] = "Updated Data! id = $id";
+            header('location: students.php');
+        } else {
+            $_SESSION['update_error'] = "Update Error! id = $id";
+            header('location: studentsUpdate');
+        }
     }
 }
+updateStudentsData();
+
+
+// Delete Data Students Table
+function deleteStudentsData()
+{
+    if (isset($_GET['id']) && !empty($_GET['id'])) {
+        $id = $_GET['id'];
+        global $conn;
+
+        // Delete Img
+        $selectImg = "SELECT * FROM students WHERE id = '$id'";
+        $resultImg = $conn->query($selectImg);
+        $img = $resultImg->fetch_assoc();
+        $imgLocation = $img['profilePhoto'];
+
+        if (file_exists($imgLocation)) {
+            unlink($imgLocation);
+        }
+
+        // Delete Users Data
+        $userId = $img['userId'];
+        $deleteUser = "DELETE FROM users WHERE id = '$userId'";
+        $users = $conn->query($deleteUser);
+
+        if ($users === TRUE) {
+        }
+
+        // Students Data Delete
+        $deleteStudents = "DELETE FROM students WHERE id = '$id'";
+        if ($conn->query($deleteStudents)) {
+            $_SESSION['delete_data'] = "Deleted Data! id = $id";
+            header('location: students.php');
+        } else {
+            $_SESSION['delete_error'] = "Delete Error id = $id";
+            header('location: students.php');
+        }
+    }
+}
+deleteStudentsData();

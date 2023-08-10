@@ -24,13 +24,13 @@ require('include/connect.php');
 require_once('include/function.php');
 
 // Semester table data showing website
-$result = showDataAnyTable('semester');
+$result = showDataAnyTable('semesters');
 
 // Department Table Data Showing
-$showDepartment = showDataAnyTable('department');
+$showDepartment = showDataAnyTable('departments');
 
 // Gender Table Data Showing
-$showGender = showDataAnyTable('gender');
+$showGender = showDataAnyTable('genders');
 
 ?>
 
@@ -103,7 +103,7 @@ $showGender = showDataAnyTable('gender');
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                     ?>
-                            <option value="<?php echo $row['id']; ?>"><?php echo $row['semester']; ?></option>
+                            <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
                     <?php
                         }
                     }
@@ -126,7 +126,7 @@ $showGender = showDataAnyTable('gender');
                     if ($showDepartment->num_rows > 0) {
                         while ($data = $showDepartment->fetch_object()) {
                     ?>
-                            <option value="<?php echo $data->id; ?>"><?php echo $data->departmentName; ?></option>
+                            <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
                     <?php
                         }
                     }
@@ -190,4 +190,3 @@ unset($_SESSION['email_exits']);
 unset($_SESSION['reg_exits']);
 unset($_SESSION['password_wrong']);
 unset($_SESSION['insert_error']);
-?>

@@ -65,19 +65,19 @@ $url = "http://localhost/learn_with_cse/admin/";
                             <a href="<?php echo $url; ?>students.php" class="btn">Students</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="<?php echo $url; ?>semester.php" class="btn">Semester</a>
+                            <a href="<?php echo $url; ?>semesters.php" class="btn">Semesters</a>
                         </li>
                         <li class="list-group-item">
                             <a href="<?php echo $url; ?>subjects.php" class="btn">Subjects</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="<?php echo $url; ?>department.php" class="btn">Department</a>
+                            <a href="<?php echo $url; ?>departments.php" class="btn">Departments</a>
                         </li>
                         <li class="list-group-item">
                             <a href="<?php echo $url; ?>teachers.php" class="btn">Teachers</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="<?php echo $url; ?>gender.php" class="btn">Gender</a>
+                            <a href="<?php echo $url; ?>genders.php" class="btn">Genders</a>
                         </li>
                         <li class="list-group-item">
                             <a href="<?php echo $url; ?>courses.php" class="btn">Courses</a>
@@ -87,6 +87,9 @@ $url = "http://localhost/learn_with_cse/admin/";
                         </li>
                         <li class="list-group-item">
                             <a href="<?php echo $url; ?>markEntry.php" class="btn">Mark Entry</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="<?php echo $url; ?>markSheets.php" class="btn">MarkSheets</a>
                         </li>
                         <li class="list-group-item">
                             <a href="<?php echo $url; ?>markSheets.php" class="btn">MarkSheets</a>

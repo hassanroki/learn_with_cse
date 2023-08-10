@@ -21,7 +21,7 @@ require_once('include/function.php');
 $teachers = showDataAnyTable('teachers');
 
 // Semester Table Data Show
-$semester = showDataAnyTable('semester');
+$semester = showDataAnyTable('semesters');
 ?>
 
 <!-- Html -->
@@ -29,6 +29,16 @@ $semester = showDataAnyTable('semester');
     <a href="subjects.php" class="btn btn-info">All Subjects</a>
     <h2 class="text-center">Add New Subjects</h2>
     <hr>
+
+    <?php
+        if( isset( $_SESSION['course_exits'] ) ) {
+            ?>
+            <div class="alert alert-warning">
+                <strong>Warning!</strong> <?php echo $_SESSION['course_exits']; ?>
+            </div>
+            <?php
+        }
+    ?>
 
     <?php
     if (isset($_SESSION['insert_error'])) {
@@ -80,7 +90,7 @@ $semester = showDataAnyTable('semester');
                 if ($semester->num_rows > 0) {
                     while ($row = $semester->fetch_assoc()) {
                 ?>
-                        <option value="<?php echo $row['id']; ?>"><?php echo $row['semester']; ?></option>
+                        <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
                 <?php
                     }
                 }
@@ -100,4 +110,5 @@ include_once('include/footer.php');
 
 <?php
 // Unset Session
+unset($_SESSION['course_exits']);
 unset($_SESSION['insert_error']);

@@ -8,7 +8,7 @@ include_once('include/header.php');
 require_once('include/function.php');
 
 // Semester Table Data Website Showing
-$semesterList = showDataAnyTable('semester');
+$semesterList = showDataAnyTable('semesters');
 
 // Subjects Table Data Showing
 $subjectList = showDataAnyTable('subjects');
@@ -32,7 +32,7 @@ $subjectList = showDataAnyTable('subjects');
                             <?php
                             while ($data = $semesterList->fetch_object()) {
                             ?>
-                                <option value="<?php echo $data->id; ?>"><?php echo $data->semester; ?></option>
+                                <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
                             <?php
                             }
                             ?>

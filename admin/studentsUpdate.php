@@ -28,7 +28,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = $_GET['id'];
 
     $showData = selectAnyTableWhereId('students', $id);
-    
+
 
     if ($showData->num_rows == 1) {
         $data = $showData->fetch_object();
@@ -37,12 +37,13 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 ?>
 
 <?php
-// Semester table data semester showing website
-$selectSql = "SELECT * FROM semester";
+// Semester table data showing website
+$selectSql = "SELECT * FROM semesters";
 $result = $conn->query($selectSql);
 
 // Gender Table Data Showing
-$gender = showDataAnyTable('gender');
+$genderId = $data -> genderId;
+$gender = selectAnyTableWhereId('genders', 'id', $genderId);
 ?>
 
 <!-- Html -->
@@ -77,14 +78,14 @@ $gender = showDataAnyTable('gender');
                         <input type="text" name="motherName" id="motherName" class="form-control" value="<?php echo $data->motherName; ?>" required>
                     </div>
                     <div class="mt-3">
-                        <label for="semester" class="form-label">Semester</label>
-                        <select name="semester" id="semester" class="form-select">
+                        <label for="semesterId" class="form-label">Semester</label>
+                        <select name="semesterId" id="semesterId" class="form-select">
                             <option value="" selected>Select Class</option>
                             <?php
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                             ?>
-                                    <option value="<?php echo $row['semester'] ?>" selected><?php echo $row['semester'] ?></option>
+                                    <option value="<?php echo $row['id']; ?>" selected><?php echo $row['name']; ?></option>
                             <?php
                                 }
                             }
@@ -96,13 +97,16 @@ $gender = showDataAnyTable('gender');
                         <input type="text" name="age" id="age" class="form-control" value="<?php echo $data->age; ?>">
                     </div>
                     <div class="mt-3">
-                        <label for="gender">Gender</label>
-                        <select name="gender" id="gender" class="form-select">
-                            <option value="<?php echo $gender->id; ?>" selected><?php echo $gender->name; ?></option>
+                        <label for="genderId">Gender</label>
+                        <select name="genderId" id="genderId" class="form-select">
                             <option value="">Select Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
+                            <?php
+                                while( $row = $gender -> fetch_assoc() ) {
+                                    ?>
+                                    <option value="<?php echo $row['id']; ?>" selected> <?php echo $row['name']; ?> </option>
+                                    <?php
+                                }
+                            ?>
                         </select>
                     </div>
                     <div class="mt-3">
@@ -133,5 +137,3 @@ include_once('include/footerJs.php');
 <?php
 // Unset Session
 unset($_SESSION['update_error']);
-
-?>

@@ -27,7 +27,7 @@
 
             // Semester Table
             $semesterId = $subjects['semesterId'];
-            $semesterView = selectAnyTableWhereId('semester', $semesterId);
+            $semesterView = selectAnyTableWhereId('semesters', $semesterId);
             $semester = $semesterView -> fetch_assoc();
         }
     }
@@ -59,7 +59,7 @@
                 <td><?php echo $subjects['credit']; ?></td>
                 <td><?php echo $subjects['mark']; ?></td>
                 <td><?php echo $teachers['name']; ?></td>
-                <td><?php echo $semester['semester']; ?></td>
+                <td><?php echo $semester['name']; ?></td>
             </tr>
         </tbody>
     </table>

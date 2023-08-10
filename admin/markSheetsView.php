@@ -28,7 +28,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
         // Semester Table Data Show
         $semesterId = $data -> semesterId;
-        $semesterResult = selectAnyTableWhereId('semester', $semesterId);
+        $semesterResult = selectAnyTableWhereId('semesters', $semesterId);
         $semester = $semesterResult -> fetch_object();
 
         // Subjects Table Data Show
@@ -67,7 +67,7 @@ if ($data == null) {
                 <td><?php echo $student -> studentName; ?></td>
                 <td><?php echo $data -> studentReg; ?></td>
                 <td><?php echo $student -> roll; ?></td>
-                <td><?php echo $semester -> semester; ?></td>
+                <td><?php echo $semester -> name; ?></td>
                 <td><?php echo $subject -> courseTitle; ?></td>
                 <td><?php echo $data -> mark; ?></td>
             </tr>

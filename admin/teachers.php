@@ -6,22 +6,19 @@ session_start();
 if (!isset($_SESSION['login_success'])) {
     header('location: login.php');
 }
-?>
 
-<?php
-    // Connect DB
-    require('include/connect.php');
-?>
+// Connect DB
+require('include/connect.php');
 
-<?php
 // Header
 include_once('include/header.php');
-?>
 
-<?php
+// Query Function
+require_once('include/function.php');
+
 // Teachers Table Website Showing
-    $showTable = "SELECT * FROM teachers";
-    $result = $conn->query($showTable);
+$teachers = showDataAnyTable('teachers');
+
 ?>
 
 <!-- Html -->
@@ -87,28 +84,26 @@ include_once('include/header.php');
                     <th>SL</th>
                     <th>Id</th>
                     <th>Teachers Name</th>
-                    <th>Department</th>
                     <th>Designation</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <?php
-            if ($result->num_rows>0) {
+            if ($teachers->num_rows > 0) {
                 $i = 0;
-                while ($data = $result->fetch_object()) {
+                while ($data = $teachers->fetch_object()) {
                     $i++;
             ?>
                     <tbody>
                         <tr>
                             <td><?php echo $i; ?></td>
-                            <td><?php echo $data -> id; ?></td>
-                            <td><?php echo $data -> name; ?></td>
-                            <td><?php echo $data -> department; ?></td>
-                            <td><?php echo $data -> designation; ?></td>
+                            <td><?php echo $data->id; ?></td>
+                            <td><?php echo $data->name; ?></td>
+                            <td><?php echo $data->designation; ?></td>
                             <td>
-                                <a href="teachersView.php?id=<?php echo $data -> id;?>" class="btn btn-info">View</a>
-                                <a href="teachersUpdate.php?id=<?php echo $data -> id; ?>" class="btn btn-info">Edit</a>
-                                <a href="teachersDelete.php?id=<?php echo $data -> id; ?>" class="btn btn-warning" onclick="return confirm('Are you sure?')">Delete</a>
+                                <a href="teachersView.php?id=<?php echo $data->id; ?>" class="btn btn-info">View</a>
+                                <a href="teachersUpdate.php?id=<?php echo $data->id; ?>" class="btn btn-info">Edit</a>
+                                <a href="teachersStore.php?id=<?php echo $data->id; ?>" class="btn btn-warning" onclick="return confirm('Are you sure?')">Delete</a>
                             </td>
                         </tr>
                     </tbody>
@@ -132,4 +127,3 @@ unset($_SESSION['delete_data']);
 unset($_SESSION['delete_error']);
 unset($_SESSION['update_data']);
 unset($_SESSION['update_error']);
-?>

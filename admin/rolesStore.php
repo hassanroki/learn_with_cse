@@ -12,4 +12,3 @@
     // } else {
     //     echo ("Table Create Error!") . $conn -> connect_error;
     // }
-?>

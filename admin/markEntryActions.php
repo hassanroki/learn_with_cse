@@ -16,7 +16,7 @@ $subjectId = $_POST['subjectId'];
 
 // Any Table Where Any Column
 $getStudents = selectAnyTableWhereColumnId('students', 'semesterId', $semesterId);
-$getSemester = selectAnyTableWhereColumnId('semester', 'id', $semesterId);
+$getSemester = selectAnyTableWhereColumnId('semesters', 'id', $semesterId);
 $getSubjects = selectAnyTableWhereColumnId('subjects', 'id', $subjectId);
 
 $semesterData = $getSemester -> fetch_object();
@@ -29,7 +29,7 @@ $teacher = $subjectsData -> teacherId;
 
 <!-- Html -->
 <div class="col-md-9 ps-3">
-    <h3 class="text-center"><?php echo $semesterData -> semester; ?>, Subject: <?php echo $subjectsData -> courseTitle; ?></h3>
+    <h3 class="text-center"><?php echo $semesterData -> name; ?>, Subject: <?php echo $subjectsData -> courseTitle; ?></h3>
     <h3 class="text-center">Code: <?php echo $subjectsData -> courseCode; ?>, Teacher: <?php echo $teachersData -> name; ?></h3>
     <h3 class="text-center">Full Mark: <?php echo $subjectsData -> mark; ?>, Exam Year: <?php echo date('Y'); ?></h3>
     <hr>

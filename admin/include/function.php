@@ -22,6 +22,14 @@ function selectAnyTableWhereId($table, $id)
     return $conn->query($showData);
 }
 
+// Delete Any Table Data
+function deleteAnyTableData($table, $id)
+{
+    global $conn;
+    $deleteData = "DELETE FROM $table WHERE id = $id";
+    return $conn -> query( $deleteData );
+}
+
 // Website View Any Table Data & Any Column
 function selectAnyTableWhereColumnId($table, $where, $id)
 {
@@ -30,11 +38,3 @@ function selectAnyTableWhereColumnId($table, $where, $id)
     return $conn->query($showData);
 }
 
-
-// Delete Any Table Data
-function deleteAnyTableData($table, $id)
-{
-    global $conn;
-    $deleteData = "DELETE FROM $table WHERE id = $id";
-    return $conn -> query( $deleteData );
-}

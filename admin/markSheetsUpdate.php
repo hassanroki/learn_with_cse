@@ -32,7 +32,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 $student = showDataAnyTable('students');
 
 // Semester Table Data Show
-$semester = showDataAnyTable('semester');
+$semester = showDataAnyTable('semesters');
 
 // Subjects Table Data Show
 $subject = showDataAnyTable('subjects');
@@ -80,7 +80,7 @@ $subject = showDataAnyTable('subjects');
                 if ($semester->num_rows > 0) {
                     while ($semesterData = $semester->fetch_object()) {
                 ?>
-                        <option value="<?php echo $semesterData->id; ?>" selected><?php echo $semesterData->semester; ?></option>
+                        <option value="<?php echo $semesterData->id; ?>" selected><?php echo $semesterData->name; ?></option>
                 <?php
                     }
                 }
