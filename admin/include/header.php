@@ -92,7 +92,7 @@ $url = "http://localhost/learn_with_cse/admin/";
                             <a href="<?php echo $url; ?>markSheets.php" class="btn">MarkSheets</a>
                         </li>
                         <li class="list-group-item">
-                            <a href="<?php echo $url; ?>markSheets.php" class="btn">MarkSheets</a>
+                            <a href="<?php echo $url; ?>result.php" class="btn">Result</a>
                         </li>
                         <li class="list-group-item">
                             <a href="<?php echo $url; ?>admin.php" class="btn">Admin</a>

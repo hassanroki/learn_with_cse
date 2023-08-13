@@ -50,6 +50,14 @@ $teacher = $subjectsData -> teacherId;
                 <?php
                 $i = 1;
                 while ($data = $getStudents->fetch_object()) {
+                    $studentId = $data -> id;
+                    $where = "studentId = $studentId and subjectId = $subjectId and semesterId= $semesterId";
+                    $getMark = selectAnyWhereQuery('markSheets', $where);
+                    //var_dump($getMark);
+                    $preMark = "";
+                    if( $getMark != NULL ) {
+                        $preMark = $getMark -> mark;
+                    }
                 ?>
                     <tr>
                         <td><?php echo $i++; ?></td>
@@ -59,7 +67,7 @@ $teacher = $subjectsData -> teacherId;
                         <td>
                             <input type="hidden" name="studentId[]" value="<?php echo $data -> id; ?>" class="form-control" placeholder="Enter Mark">
                             <input type="hidden" name="studentReg[]" value="<?php echo $data -> reg; ?>" class="form-control" placeholder="Enter Mark">
-                            <input type="number" name="mark[]" id="" class="form-control" placeholder="Enter Mark">
+                            <input type="number" name="mark[]" id="" class="form-control" placeholder="Enter Mark" value="<?php echo $preMark; ?>">
                         </td>
                     </tr>
                 <?php
