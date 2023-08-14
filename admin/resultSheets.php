@@ -15,6 +15,18 @@ include_once('include/header.php');
 $semesterId = $_POST['semesterId'];
 $studentReg = $_POST['studentReg'];
 
+// MarkSheets Table Data
+$where = "semesterId = $semesterId and studentReg = $studentReg";
+$getMarkSheets = selectAnyWhereQueryAll('markSheets', $where);
+// var_dump($getMarkSheets);
+
+
+
+if ($getMarkSheets->num_rows == 0) {
+    $_SESSION['reg_exits'] = "Semester Or Registration Invalid!";
+    echo "<script>window.location.href = 'result.php'</script>";
+}
+
 // Students Table
 $where = "semesterId = $semesterId and reg = $studentReg";
 $getStudents = selectAnyWhereQuery('students', $where);
@@ -24,10 +36,6 @@ $getStudents = selectAnyWhereQuery('students', $where);
 $departmentId = $getStudents->departmentId;
 $departmentData = selectAnyTableWhereColumnId('departments', 'id', $departmentId);
 $department = $departmentData->fetch_object();
-
-// MarkSheets Table Data
-$where = "semesterId = $semesterId and studentReg = $studentReg";
-$getMarkSheets = selectAnyWhereQueryAll('markSheets', $where);
 
 ?>
 
@@ -160,11 +168,14 @@ $getMarkSheets = selectAnyWhereQueryAll('markSheets', $where);
                     $i = 1;
                     $count = 0;
                     $totalMark = 0;
+                    $gpaGradePoint = 0;
                     if ($getMarkSheets->num_rows > 0) {
                         while ($data = $getMarkSheets->fetch_object()) {
                             $totalMark += $data->mark;
                             $count++;
-                            $gpaGradePoint = $totalMark / $count;
+                            $gpaGradePoint += getGradePoint($data->mark);
+                            $cGpa = number_format($gpaGradePoint / $count, 2);
+
                             $subjectId = $data->subjectId;
                             $subjectData = selectAnyTableWhereColumnId('subjects', 'id', $subjectId);
                             $subject = $subjectData->fetch_object();
@@ -176,17 +187,17 @@ $getMarkSheets = selectAnyWhereQueryAll('markSheets', $where);
                                 <td><?php echo getGradePoint($data->mark); ?></td>
                                 <td><?php echo getLetterGrade($data->mark); ?></td>
                             </tr>
-                    <?php
+                        <?php
                         }
- 
-                    ?>
-                    <tr>
-                        <td colspan="3"><strong>Total Mark</strong>: <?php echo $totalMark; ?></td>
-                        <td>CGPA: <?php echo getGradePoint($gpaGradePoint); ?></td>
-                        <td>Grade: <?php echo getLetterGrade($gpaGradePoint); ?></td>
-                    </tr>
+
+                        ?>
+                        <tr>
+                            <td colspan="3"><strong>Total Mark</strong>: <?php echo $totalMark; ?></td>
+                            <td>cGPA: <?php echo $cGpa; ?></td>
+                            <td>Average Grade: <?php echo getCGpa($cGpa); ?></td>
+                        </tr>
                     <?php
-                   }
+                    }
                     ?>
 
                 </tbody>
