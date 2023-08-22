@@ -1,0 +1,33 @@
+@media print{
+    .navbar, .col-md-3, .printBtn{
+        display: none;
+        visibility: none;
+    }
+
+    @page{
+        margin: 20px 71px 20px 71px;
+    }
+
+    .result-sheets h4{
+        font-size: 21px;
+    }
+
+    .result-sheets .table{
+        font-size: 14px;
+        line-height: normal;
+    }
+
+    .result-sheets .table .sub-table{
+        font-size: 10px;
+    }
+
+    .result-sheets .table .sub-table td{
+        line-height: 12px;
+        margin: 2px 3px;
+        padding: 2px 3px;
+    }
+
+    .result-sheets .table td{
+        line-height: 15px;
+    }
+}

@@ -40,12 +40,15 @@ $department = $departmentData->fetch_object();
 ?>
 
 <!-- Html -->
-<div class="col-md-9 ps-3">
+<div class="col-md-9 ps-3 result-sheets">
+    <div class="text-end">
+        <button class="btn btn-danger printBtn" onclick="window.print()" id="print-btn">Print</button>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <h4 class="text-center">Bangladesh Technical Education Board Dhaka, Bangladesh</h4>
             <h4 class="text-center">Semester Three Evaluation</h4>
-            <h3 class="text-center">Exam Year <?php echo date('Y'); ?></h3>
+            <h4 class="text-center">Exam Year <?php echo date('Y'); ?></h4>
             <hr>
         </div>
     </div>
@@ -59,7 +62,7 @@ $department = $departmentData->fetch_object();
                         <td class="text-center"><img src="asset/img/ecb-logo.png" alt="logo" class="img-fluid"></td>
                         <td></td>
                         <td rowspan="5">
-                            <table class="table table-bordered border-dark fs-6">
+                            <table class="table sub-table table-bordered border-dark fs-6">
                                 <thead>
                                     <tr>
                                         <td>Letter Grade</td>

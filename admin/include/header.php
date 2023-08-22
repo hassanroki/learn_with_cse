@@ -22,6 +22,10 @@ $url = "http://localhost/learn_with_cse/admin/";
 
     <!-- Responsive css -->
     <link rel="stylesheet" href="<?php echo $url; ?>asset/css/responsive.css?v=<?php echo time(); ?>">
+
+    <!-- Print Media css -->
+    <link rel="stylesheet" href="<?php echo $url; ?>asset/css/printMedia.css?v=<?php echo time(); ?>">
+
 </head>
 
 <body>
