@@ -100,6 +100,10 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                             <td><?php echo $departmentView->name; ?></td>
                         </tr>
                         <tr>
+                            <th>Age</th>
+                            <td><?php echo $getAge = getAge($data->age); ?></td>
+                        </tr>
+                        <tr>
                             <th>Gender</th>
                             <td><?php echo $genderView->name; ?></td>
                         </tr>

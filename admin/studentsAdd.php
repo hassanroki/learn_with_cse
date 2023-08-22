@@ -135,7 +135,7 @@ $showGender = showDataAnyTable('genders');
             </div>
             <div class="mt-3">
                 <label for="age" class="form-label">Age</label>
-                <input type="text" name="age" id="age" class="form-control" placeholder="Enter Age">
+                <input type="date" name="age" id="age" class="form-control" placeholder="Enter Age">
             </div>
             <div class="mt-3">
                 <label for="genderId">Gender</label>

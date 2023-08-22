@@ -131,3 +131,16 @@ function getCGpa($grade)
 
     return $cGpa;
 }
+
+// Current Age Calculate
+function getAge( $dob ) {
+    $bday = new DateTime( $dob );
+    $today = new DateTime( date('m.d.y') );
+
+    if( $bday>$today ) {
+        return 'You are not born yet';
+    } else {
+        $diff = $today->diff($bday);
+        return $diff->y . ' Years ' . $diff->m . ' Months ' . $diff->d . ' Days';
+    }
+}
