@@ -99,6 +99,9 @@ $url = "http://localhost/learn_with_cse/admin/";
                             <a href="<?php echo $url; ?>result.php" class="btn">Result</a>
                         </li>
                         <li class="list-group-item">
+                            <a href="<?php echo $url; ?>groupResult.php" class="btn">Group Result</a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="<?php echo $url; ?>admin.php" class="btn">Admin</a>
                         </li>
                         <li class="list-group-item">

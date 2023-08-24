@@ -125,6 +125,8 @@ function getCGpa($grade)
         $cGpa = "C";
     } elseif ($grade >= 1 && $grade <= 1.99) {
         $cGpa = "D";
+    } elseif( $grade == 0 ) {
+        $cGpa = "F";
     } else {
         $cGpa = "Invalid Grade!";
     }
