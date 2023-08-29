@@ -1,9 +1,13 @@
 <?php
+// Session Start
+session_start();
+
 // Connect Function
 require_once('include/function.php');
 
 // Connect Header
 include_once('include/header.php');
+$semester = [];
 if (isset($_POST['result']) && !empty($_POST['semesterId'])) {
     $semesterId = $_POST['semesterId'];
 
@@ -14,6 +18,12 @@ if (isset($_POST['result']) && !empty($_POST['semesterId'])) {
     // Select Semester Table
     $semesterQuery = selectAnyTableWhereId('semesters', $semesterId);
     $semester = $semesterQuery->fetch_object();
+
+}
+
+if( $semester == null ){
+    $_SESSION['semester_exits'] = "Invalid!";
+    echo "<script>window.location.href = 'groupResult.php'</script>";
 }
 ?>
 

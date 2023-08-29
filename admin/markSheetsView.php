@@ -12,7 +12,7 @@ include_once('include/header.php');
 // Connect Function
 require_once('include/function.php');
 // Mark Sheets Table Data View Web Site
-$data = $student = $semester = $subject = [];
+$data = [];
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -39,7 +39,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 }
 
 if ($data == null) {
-    header('location: markSheets.php');
+    //header('location: markSheets.php');
+    echo "<script>window.location.href = 'markSheets.php'</script>";
 }
 ?>
 
